@@ -4,6 +4,10 @@ from google.oauth2.service_account import Credentials
 import os
 import json
 from dotenv import load_dotenv
+from flask_caching import Cache
+from flask import send_from_directory
+from datetime import timedelta
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -18,7 +22,6 @@ try:
 except KeyError:
     raise RuntimeError("GOOGLE_CREDENTIALS environment variable not set")
 
-
 # Authorize the client
 client = gspread.authorize(creds)
 
@@ -26,43 +29,53 @@ client = gspread.authorize(creds)
 SHEET_NAME = "Products"
 sheet = client.open(SHEET_NAME)
 
+# Configure cache
+cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache', 'CACHE_DEFAULT_TIMEOUT': 300})
+
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(hours=2)
+
 def convert_link(link):
     """Convert Google drive file link to direct image URL"""
     if "https://drive.google.com" in link:
         try:
-            file_id = link.split("/d/")[1].split("/")[0]    # extract file ID
+            file_id = link.split("/d/")[1].split("/")[0]  # extract file ID
             return f"https://lh3.googleusercontent.com/d/{file_id}"
         except IndexError:
-            return link # return original link if format is incorrect
-    return link # return original link if not Google Drive link
+            return link  # return original link if format is incorrect
+    return link  # return original link if not Google Drive link
 
-def sheet_to_dict(worksheet):
-    data = worksheet.get_all_values()
+
+@cache.cached()
+def get_category_data():
+    category_worksheet = sheet.worksheet('Category')
+    data = category_worksheet.get_all_values()
     headers = data[0]
     return [dict(zip(headers, row)) for row in data[1:]]
+
+
+@cache.cached()
+def get_slideshow_data():
+    slideshow_worksheet = sheet.worksheet('Slideshow')
+    data = slideshow_worksheet.get_all_values()
+    headers = data[0]
+    return [dict(zip(headers, row)) for row in data[1:]]
+
 
 # Home page
 @app.route('/')
 def home():
     return all_category()
 
+
 # Route to display all categories
 @app.route('/category')
 def all_category():
     try:
-        category_worksheet = sheet.worksheet('Category')
-        category_data = category_worksheet.get_all_values()
-
-        slideshow_worksheet = sheet.worksheet('Slideshow')
-        slideshow_data = slideshow_worksheet.get_all_values()
-        
-        headers = category_data[0]
-        slideshow = [dict(zip(headers, row)) for row in slideshow_data[1:]]
-        categories = [dict(zip(headers, row)) for row in category_data[1:]]
+        categories = get_category_data()
+        slideshow = get_slideshow_data()
 
         for cat in categories:
             cat["Category Icon"] = convert_link(cat["Category Icon"])
-
         for slide in slideshow:
             slide["Category Icon"] = convert_link(slide["Category Icon"])
 
@@ -70,35 +83,31 @@ def all_category():
     except gspread.exceptions.WorksheetNotFound:
         return render_template("404.html"), 500
 
+
 # Route to display all products in a category
 @app.route('/category/<category_name>')
+@cache.cached()
 def show_category(category_name):
     try:
-        worksheet = sheet.worksheet(category_name)  # open the sheet based on category name
-        data = worksheet.get_all_values()   # fetch all data
-        headers = data[0]   # first row i.e., column name
-        products = [dict(zip(headers, row)) for row in data[1:]]    # convert all rows into dictionary
+        worksheet = sheet.worksheet(category_name)
+        data = worksheet.get_all_values()
+        headers = data[0]
+        products = [dict(zip(headers, row)) for row in data[1:]]
 
-        category_worksheet = sheet.worksheet('Category')
-        category_data = category_worksheet.get_all_values()
-        cat_headers = category_data[0]
-        categories = [dict(zip(cat_headers, row)) for row in category_data[1:]]
+        categories = get_category_data()
 
-        # convert image links
         for product in products:
-            product["Image 1"] = convert_link(product["Image 1"])
-            # product["Image 2"] = convert_link(product["Image 2"])
-            # product["Image 3"] = convert_link(product["Image 3"])
-            # product["Image 4"] = convert_link(product["Image 4"])
-            # product["Image 5"] = convert_link(product["Image 5"])
-            # product["Image 6"] = convert_link(product["Image 6"])
+            if "Image 1" in product:
+                product["Image 1"] = convert_link(product["Image 1"])
 
         return render_template('one_category.html', all_categories=categories, category=category_name, products=products)
     except gspread.exceptions.WorksheetNotFound:
         return render_template("404.html"), 500
 
+
 # Route to display a single product
 @app.route('/category/<category_name>/<product_id>')
+@cache.cached()
 def show_product(category_name, product_id):
     try:
         worksheet = sheet.worksheet(category_name)
@@ -106,12 +115,8 @@ def show_product(category_name, product_id):
         headers = data[0]
         products = [dict(zip(headers, row)) for row in data[1:]]
 
-        category_worksheet = sheet.worksheet('Category')
-        category_data = category_worksheet.get_all_values()
-        cat_headers = category_data[0]
-        categories = [dict(zip(cat_headers, row)) for row in category_data[1:]]
+        categories = get_category_data()
 
-        # Find the product by id
         product = next((p for p in products if p["ProductID"] == product_id), None)
 
         if not product:
@@ -126,13 +131,12 @@ def show_product(category_name, product_id):
     except gspread.exceptions.WorksheetNotFound:
         return render_template("404.html"), 500
 
+
 @app.route('/contact')
 def find_us():
-    category_worksheet = sheet.worksheet('Category')
-    category_data = category_worksheet.get_all_values()
-    cat_headers = category_data[0]
-    categories = [dict(zip(cat_headers, row)) for row in category_data[1:]]
+    categories = get_category_data()
     return render_template("find_us.html", all_categories=categories)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
