@@ -52,10 +52,6 @@ body {
       max-height: 70px;
       margin-right: 16px;
     }
-    .card-title {
-        font-size: 1.25rem;
-        margin-bottom: 2px;
-    } 
 }
   
 @media (min-width: 768px) {
@@ -63,10 +59,6 @@ body {
       max-height: 80px;
       margin-right: 20px;
     }
-    .card-title {
-        font-size: 1.5rem;
-        margin-bottom: 2px;
-    } 
 }
   
 .brand-title {
@@ -104,9 +96,22 @@ body {
 }
 
 .card-title {
-    font-size: 3rem;
-    margin-bottom: 2px;
-} 
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+  
+@media (min-width: 576px) {
+    .card-title {
+      font-size: 1.1rem;
+    }
+}
+  
+@media (min-width: 768px) {
+    .card-title {
+      font-size: 1.25rem;
+    }
+}
+  
 
 /* Home slideshow */
 .homeSwiper .swiper {
