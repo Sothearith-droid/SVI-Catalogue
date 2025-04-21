@@ -97,7 +97,7 @@ body {
 
 .responsive-title {
     font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
   }
   
   @media (min-width: 576px) {
