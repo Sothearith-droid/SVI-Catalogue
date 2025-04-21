@@ -30,7 +30,7 @@
 <div class="container mt-5">
   <div class="row g-4">
     {% for cat in all_categories %}
-    <div class="col-12 col-sm-6 col-md-4">
+    <div class="col-6 col-sm-6 col-md-4">
       <div class="product-card h-100">
         <a href="{{ url_for('show_category', category_name=cat['Category Name']) }}">
           <img src="{{ cat['Category Icon'] }}" class="img-fluid mb-3" alt="{{ cat['Category Name'] }}">
