@@ -1,0 +1,39 @@
+{% extends "base_template.html" %}
+{% block title %}Find Us{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+<div class="container py-5">
+    <div class="row gy-4 align-items-stretch">
+        <!-- Map (Left on desktop, Top on mobile) -->
+        <div class="col-12 col-md-6 map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0103556507075!2d144.96305831531852!3d-37.81421797975162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f3c74217%3A0x50b4f3cfdddb25e1!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1615895510114!5m2!1sen!2sus" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- Info (Right on desktop, Bottom on mobile) -->
+        <div class="col-12 col-md-6 contact-info">
+            <h4>SVI Food Packaging</h4>
+            <p><strong>Address:</strong> 123 Food Street, Melbourne, VIC 3000, Australia</p>
+            <p><strong>Phone:</strong> +61 3 9123 4567</p>
+            <p><strong>Email:</strong> info@svipackaging.com.au</p>
+
+            <div class="social-icons mt-3">
+                <a href="https://t.me/yourtelegramhandle" target="_blank" title="Telegram">
+                    <i class="bi bi-telegram"></i>
+                </a>
+                <a href="https://www.facebook.com/yourfacebookpage" target="_blank" title="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base_template.html" %}
+{% block title %}SVI - Food Packaging{% endblock %}
+
+{% block content %}
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+<!-- Swiper Carousel -->
+<div class="swiper homeSwiper">
+  <div class="swiper-wrapper">
+    {% for slide in slideshow %}
+      <div class="swiper-slide">
+        <a href="{{ url_for('show_category', category_name=slide['Category Name']) }}">
+          <img src="{{ slide['Category Icon'] }}" alt="{{ slide['Category Name'] }}">
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Add Arrows -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+
+  <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+</div>
+
+<!-- Category Grid -->
+<div class="container mt-5">
+  <div class="row g-4">
+    {% for cat in all_categories %}
+    <div class="col-12 col-sm-6 col-md-4">
+      <div class="product-card h-100">
+        <a href="{{ url_for('show_category', category_name=cat['Category Name']) }}">
+          <img src="{{ cat['Category Icon'] }}" class="img-fluid mb-3" alt="{{ cat['Category Name'] }}">
+          <h5>{{ cat["Category Name"] }}</h5>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base_template.html" %}
+{% block title %}SVI - Food Packaging{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<div class="container py-4">
+    <div class="row align-items-start">
+        <!-- Desktop View: 2 Columns (3:1 ratio) -->
+        <div class="col-md-9 d-none d-md-block">
+            <div class="row product-image g-2">
+                {% for i in range(1, 10) %}
+                    {% if product["Image " ~ i] %}
+                        <div class="col-lg-6 col-md-6">
+                            <a data-fancybox="gallery" href="{{ product["Image " ~ i] }}">
+                                <img src="{{ product["Image " ~ i] }}" alt="Product Image" class="img-fluid" />
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>            
+        </div>
+
+        <!-- Mobile View: Swiper Carousel -->
+        <div class="col-12 d-block d-md-none mb-4">
+            <div class="swiper productSwiper">
+                <div class="swiper-wrapper">
+                    {% for i in range(1, 10) %}
+                        {% if product["Image " ~ i] %}
+                            <div class="swiper-slide">
+                                <a data-fancybox="gallery" href="{{ product["Image " ~ i] }}">
+                                    <img src="{{ product["Image " ~ i] }}" class="w-100 rounded" alt="Product Image" />
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <!-- Optional Controls -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-3 d-flex justify-content-center">
+            <div class="product-info text-center text-md-start">
+                <h1 class="product-name">{{ product["Product Name"] }}</h1>
+
+                <!-- Product Description -->
+                <p class="description" style="white-space: pre-wrap;">{{ product["Description"] | replace('\n- ', '\n• ') }}</p>
+
+                <!-- Price -->
+                <div class="price">
+                    Retail price: {{ product["Retail Price"] | replace('\n- ', '\n• ') }}
+                  </div>
+                  <div class="price">
+                    Wholesale price: {{ product["Wholesale Price"] | replace('\n- ', '\n• ') }}
+                  </div>                  
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fancybox JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js" defer></script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+{% endblock %}

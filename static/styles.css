@@ -1,0 +1,183 @@
+/* Base Template */
+/* Highlight navbar on hover */
+.nav-link:hover {
+    background-color: #343a40; /* Dark background */
+    color: #ffffff !important; /* Light text */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Highlight when active (current page) */
+.nav-link.active {
+    background-color: #0d6efd; /* Bootstrap primary color */
+    color: #ffffff !important;
+    border-radius: 5px;
+}
+
+/* Highlight dropdown item on hover */
+.dropdown-menu .dropdown-item:hover {
+    background-color: #343a40; /* Dark background */
+    color: #ffffff !important;
+}
+
+/* Highlight dropdown item when active (selected) */
+.dropdown-menu .dropdown-item.active {
+    background-color: #0d6efd; /* Bootstrap primary */
+    color: #ffffff !important;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    bottom: 0;
+    width: 100%;
+}
+
+.brand-logo {
+    height: 150px;
+    margin-right: 50px;
+}
+
+.lead {
+    font-weight: 300;
+}
+
+/* ######################################## */
+/* All categories and one category */
+
+/* Card for category and product */
+.product-card {
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 5px;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* even shadow all around */
+}
+.product-card a {
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.product-card a:hover {
+    background-color: rgb(240, 240, 240);
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); /* even shadow all around */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.product-card img {
+    border-radius: 5px;
+}
+
+/* Home slideshow */
+.homeSwiper .swiper {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3rem;
+}
+
+.homeSwiper .swiper-slide img {
+    width: 100%;
+    max-height: 700px;
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+/* ######################################## */
+/* Product */
+.product-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    transition: box-shadow 0.3s ease;
+}
+
+.product-image img:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+/* slideshow for small screen */
+.productSwiper .swiper-slide img {
+    object-fit: cover;
+    height: 350px;
+    border-radius: 8px;
+}
+
+/* Product info card Styling */
+.product-info {
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    transition: box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.product-name {
+    font-size: 28px;
+    font-weight: bolder;
+    color: #333;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 20px;
+    color: #007bff;
+}
+
+/* ######################################## */
+/* Find us */
+.contact-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.contact-info h4 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    margin: 8px 0;
+}
+
+.social-icons a {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    border: none;
+    border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+    .map-container {
+        height: 100%;
+    }
+}
