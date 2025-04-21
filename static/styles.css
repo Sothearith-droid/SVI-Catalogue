@@ -41,13 +41,31 @@ body {
 }
 
 .brand-logo {
-    height: 150px;
-    margin-right: 20px;  /* Try reducing the margin first */
+    height: auto;
+    max-height: 60px;
+    width: auto;
+    margin-right: 12px;
 }
-
+  
+@media (min-width: 576px) {
+    .brand-logo {
+      max-height: 70px;
+      margin-right: 16px;
+    }
+}
+  
+@media (min-width: 768px) {
+    .brand-logo {
+      max-height: 80px;
+      margin-right: 20px;
+    }
+}
+  
 .brand-title {
-    margin-left: 20px;   /* This guarantees spacing regardless of flex behavior */
-}
+    margin-left: 8px; /* fallback spacing */
+    display: flex;
+    align-items: center;
+}  
 
 /* ######################################## */
 /* All categories and one category */
