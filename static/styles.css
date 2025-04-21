@@ -41,24 +41,24 @@ body {
 }
 
 .brand-logo {
-    max-height: 80px;
-    margin-right: 20px;  /* This creates the space between the logo and title */
+    height: 150px;
+    margin-right: 20px;  /* Try reducing the margin first */
 }
 
 .brand-title {
     margin-left: 20px;   /* This guarantees spacing regardless of flex behavior */
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     .brand-logo {
-      max-height: 60px;
-      margin-right: 10px;
+        height: 80px;  /* Smaller logo on mobile */
+        margin-right: 10px;
     }
-  
+
     .brand-title h1 {
-      font-size: 1.2rem;
+        font-size: 1.2rem;  /* Adjust brand title size for small screens */
     }
-  }  
+}
 
 
 /* ######################################## */
@@ -87,6 +87,8 @@ body {
 }
 .product-card img {
     border-radius: 5px;
+    max-height: 200px;
+    object-fit: contain;
 }
 
 /* Home slideshow */
