@@ -6,10 +6,10 @@
 
 <h1 class="text-center my-4">{{ category }}</h1>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row g-4">
         {% for product in products %}
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-sm-6 col-md-4">
             <div class="product-card h-100">
                 <a href="{{ url_for('show_product', category_name=category, product_id=product['ProductID']) }}">
                     <img src="{{ product['Image 1'] }}" class="img-fluid mb-3" alt="{{ product['Product Name'] }}">
