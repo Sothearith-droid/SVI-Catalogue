@@ -41,6 +41,11 @@ def sheet_to_dict(worksheet):
     headers = data[0]
     return [dict(zip(headers, row)) for row in data[1:]]
 
+# Home page
+@app.route('/')
+def home():
+    return all_category()
+
 # Route to display all categories
 @app.route('/category')
 def all_category():
