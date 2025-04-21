@@ -31,8 +31,8 @@
   <div class="row g-4">
     {% for cat in all_categories %}
     <div class="col-6 col-sm-6 col-md-4">
-      <div class="product-card">
-        <a href="{{ url_for('show_category', category_name=cat['Category Name']) }}" class="d-block">
+      <div class="product-card h-100">
+        <a href="{{ url_for('show_category', category_name=cat['Category Name']) }}">
           <img src="{{ cat['Category Icon'] }}" class="img-fluid w-100" alt="{{ cat['Category Name'] }}">
             <h5 class="card-title text-center">{{ cat["Category Name"] }}</h5>
         </a>
