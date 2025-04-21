@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 /* Base Template */
 /* Highlight navbar on hover */
 .nav-link:hover {
