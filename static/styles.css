@@ -95,22 +95,22 @@ body {
     object-fit: fill;
 }
 
-.card-title {
+.responsive-title {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
-}
+  }
   
-@media (min-width: 576px) {
-    .card-title {
+  @media (min-width: 576px) {
+    .responsive-title {
       font-size: 1.1rem;
     }
-}
+  }
   
-@media (min-width: 768px) {
-    .card-title {
+  @media (min-width: 768px) {
+    .responsive-title {
       font-size: 1.25rem;
     }
-}
+  }  
   
 
 /* Home slideshow */
