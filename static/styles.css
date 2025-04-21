@@ -92,6 +92,7 @@ body {
 }
 .product-card img {
     border-radius: 5px;
+    object-fit: fill;
 }
 
 .card-title {
