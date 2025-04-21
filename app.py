@@ -3,6 +3,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 import os
 import json
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
