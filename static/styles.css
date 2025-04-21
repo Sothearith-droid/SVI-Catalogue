@@ -42,12 +42,23 @@ body {
 
 .brand-logo {
     height: 150px;
-    margin-right: 50px;
+    margin-right: 20px;  /* Try reducing the margin first */
 }
 
-.lead {
-    font-weight: 300;
+.brand-title {
+    margin-left: 20px;   /* This guarantees spacing regardless of flex behavior */
 }
+
+@media (max-width: 768px) {
+    .brand-logo {
+        height: 80px;  /* Smaller logo on mobile */
+    }
+
+    .brand-title h1 {
+        font-size: 1.2rem;  /* Adjust brand title size for small screens */
+    }
+}
+
 
 /* ######################################## */
 /* All categories and one category */
