@@ -11,7 +11,7 @@
         {% for product in products %}
         <div class="col-6 col-sm-6 col-md-4">
             <div class="product-card h-100">
-                <a href="{{ url_for('show_product', category_name=category, product_id=product['ProductID']) }}" class="text-decoration-none text-dark d-block>
+                <a href="{{ url_for('show_product', category_name=category, product_id=product['ProductID']) }}" class="d-block">
                     <img src="{{ product['Image 1'] }}" class="card-img-top img-fluid w-100" alt="{{ product['Product Name'] }}">
                     <h5 class="card-title text-center">{{ product["Product Name"] }}</h5>
                 </a>
