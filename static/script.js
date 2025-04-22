@@ -41,30 +41,41 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById("loader");
   
-    // Hide loader on full load
-    window.addEventListener("load", () => {
-      setTimeout(() => {
+    const hideLoader = () => {
+      if (loader) {
         loader.classList.add("hidden");
-      }, 300);
+      }
+    };
+  
+    // 1. Hide loader when the page fully loads
+    window.addEventListener("load", () => {
+      setTimeout(hideLoader, 300);
     });
   
-    // If page is restored from bfcache (back/forward cache), hide loader immediately
-    window.addEventListener("pageshow", event => {
-      if (event.persisted) {
-        loader.classList.add("hidden");
+    // 2. Hide loader if page was loaded from back/forward cache
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted || performance.getEntriesByType("navigation")[0]?.type === "back_forward") {
+        hideLoader();
       }
     });
   
-    // Show loader on link click for normal navigation
+    // 3. Show loader on link clicks for page navigation
     document.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", e => {
-        const target = link.getAttribute("target");
-        const href = link.getAttribute("href");
-        if (target !== "_blank" && href && !href.startsWith("#") && !href.startsWith("javascript:")) {
-          loader.classList.remove("hidden");
-        }
-      });
+            const href = link.getAttribute("href");
+            const target = link.getAttribute("target");
+    
+            if (
+                href &&
+                !href.startsWith("#") &&
+                !href.startsWith("javascript:") &&
+                target !== "_blank"
+            ) {
+                loader.classList.remove("hidden");
+            }
+        });
     });
-});  
+});
+    
    
   
