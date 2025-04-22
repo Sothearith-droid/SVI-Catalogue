@@ -37,7 +37,7 @@ document.querySelectorAll("a").forEach(link => {
 
 // Category swiper
 document.addEventListener("DOMContentLoaded", function () {
-    const swiper = new Swiper(".homeSwiper", {
+    const swiper = new swiper(".homeSwiper", {
         loop: true,
         speed: 1000,
         autoplay: {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Product swiper
 document.addEventListener("DOMContentLoaded", function () {
-    const swiper = new Swiper('.productSwiper', {
+    const swiper = new swiper('.productSwiper', {
         loop: true,
         speed: 1000,
         slidesPerView: 1,
