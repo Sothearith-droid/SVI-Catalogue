@@ -37,32 +37,27 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-});
 
-// Category swiper
-document.addEventListener("DOMContentLoaded", function () {
-    const swiper = new swiper(".homeSwiper", {
+    // Category swiper
+    new Swiper(".homeSwiper", {
         loop: true,
         speed: 1000,
         autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
+            delay: 3000,
+            disableOnInteraction: false,
         },
         pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+            el: ".swiper-pagination",
+            clickable: true,
         },
         navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
     });
-});
 
-
-// Product swiper
-document.addEventListener("DOMContentLoaded", function () {
-    const swiper = new swiper('.productSwiper', {
+    // Product swiper
+    new Swiper('.productSwiper', {
         loop: true,
         speed: 1000,
         slidesPerView: 1,
