@@ -81,8 +81,9 @@ body {
 
 #loader.hidden {
     opacity: 0;
+    transition: opacity 0.3s ease;
     pointer-events: none;
-}
+}  
 
 .spinner {
     border: 4px solid #f3f3f3;
