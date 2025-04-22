@@ -3,17 +3,33 @@
 
 {% block content %}
 <div class="container text-center py-5">
-    <img src="{{ url_for('static', filename='404-illustration.png') }}" alt="Cute cat error image" class="img-fluid mb-4" style=" max-width: 100%; height: auto; max-width: 500px;">
-    <h1 class="display-4">Oops! Something went wrong.</h1>
-    <p class="lead">សូមអភ័យទោស គេហទំព័រនេះមានបញ្ហា</p>
-    <div class="mt-4">
-        <p>Want to continue browsing?</p>
-        <a href="https://www.instagram.com/yourcompany" target="_blank" class="me-3">Telegram</a>
-        <a href="https://www.facebook.com/yourcompany" target="_blank">Facebook</a>
+    <!-- Responsive image container -->
+    <div class="mx-auto mb-4" style="max-width: 500px;">
+        <img src="{{ url_for('static', filename='404-illustration.png') }}"
+             alt="Cute cat error image"
+             class="img-fluid w-100 h-auto rounded shadow-sm">
     </div>
+
+    <h1 class="display-5 fw-bold">Oops! Something went wrong.</h1>
+    <p class="lead">សូមអភ័យទោស គេហទំព័រនេះមានបញ្ហា</p>
+
     <div class="mt-4">
-        <p >Need help?</p>
-        <a href="https://www.facebook.com/yourcompany" target="_blank">Connect with us</a>
+        <p class="mb-2">Want to continue browsing?</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="https://t.me/yourcompany" target="_blank" class="btn btn-outline-primary">
+                Telegram
+            </a>
+            <a href="https://www.facebook.com/yourcompany" target="_blank" class="btn btn-outline-primary">
+                Facebook
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <p class="mb-2">Need help?</p>
+        <a href="https://www.facebook.com/yourcompany" target="_blank" class="btn btn-primary">
+            Connect with us
+        </a>
     </div>
 </div>
 {% endblock %}
