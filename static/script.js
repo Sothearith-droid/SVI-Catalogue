@@ -40,26 +40,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById("loader");
+    console.log("DOM loaded");
 
     const hideLoader = () => {
         if (loader) {
-        loader.classList.add("hidden");
+            console.log("Hiding loader");
+            loader.classList.add("hidden");
         }
     };
 
-    // 1. Hide loader when the page fully loads
     window.addEventListener("load", () => {
+        console.log("Page fully loaded");
         setTimeout(hideLoader, 300);
     });
 
-    // 2. Hide loader if page was loaded from back/forward cache
     window.addEventListener("pageshow", (event) => {
+        console.log("Page show", event.persisted);
         if (event.persisted || performance.getEntriesByType("navigation")[0]?.type === "back_forward") {
-        hideLoader();
+            hideLoader();
         }
     });
 
-    // 3. Show loader on link clicks for page navigation
     document.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", e => {
             const href = link.getAttribute("href");
@@ -71,11 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 !href.startsWith("javascript:") &&
                 target !== "_blank"
             ) {
+                console.log("Navigating, showing loader for link:", href);
                 loader.classList.remove("hidden");
             }
         });
     });
 });
-    
-   
-  
