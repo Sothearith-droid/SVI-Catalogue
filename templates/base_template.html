@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>  
   <header class="bg-dark text-white py-4 mb-0">
     <div class="container d-flex align-items-center">
         <a href="{{ url_for('all_category') }}">

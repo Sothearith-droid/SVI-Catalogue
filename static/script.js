@@ -36,3 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 });
+
+
+window.addEventListener("load", () => {
+    document.getElementById("loader").classList.add("hidden");
+  });
+  
+  document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", e => {
+      const target = link.getAttribute("target");
+      const href = link.getAttribute("href");
+      if (target !== "_blank" && href && !href.startsWith("#") && !href.startsWith("javascript:")) {
+        document.getElementById("loader").classList.remove("hidden");
+      }
+    });
+  });  
