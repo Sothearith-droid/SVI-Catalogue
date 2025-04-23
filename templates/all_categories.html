@@ -4,7 +4,7 @@
 {% block content %}
 <!-- Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v={{ version }}">
 
 <!-- Swiper Carousel -->
 <div class="swiper homeSwiper">

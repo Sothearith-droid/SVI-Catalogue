@@ -2,7 +2,7 @@
 {% block title %}Find Us{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v={{ version }}">
 
 <div class="container py-5">
     <div class="row gy-4 align-items-stretch">
