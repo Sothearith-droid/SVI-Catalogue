@@ -8,6 +8,7 @@ from flask_caching import Cache
 from flask import send_from_directory
 from datetime import timedelta
 import logging
+import time
 
 load_dotenv()
 
@@ -146,6 +147,10 @@ def find_us():
 def page_not_found(e):
     app.logger.warning("404 error occurred: %s", e)
     return render_template("404.html"), 404
+
+@app.context_processor
+def inject_timestamp():
+    return {'version': int(time.time())}
 
 if __name__ == '__main__':
     app.run()
