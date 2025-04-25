@@ -23,24 +23,25 @@
             </div>            
         </div>
 
-        <!-- Mobile View: Swiper Carousel -->
+        <!-- Mobile View: Flickity Carousel -->
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
         <div class="col-12 d-block d-md-none mb-4">
-            <div class="swiper productSwiper">
-                <div class="swiper-wrapper">
-                    {% for i in range(1, 10) %}
-                        {% if product["Image " ~ i] %}
-                            <div class="swiper-slide">
-                                <a data-fancybox="gallery" href="{{ product["Image " ~ i] }}">
-                                    <img src="{{ product["Image " ~ i] }}" class="w-100 rounded" alt="Product Image" />
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <!-- Optional Controls -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
+            <div class="product-carousel-mobile"
+                data-flickity='{
+                    "wrapAround": true,
+                    "autoPlay": 3500,
+                    "imagesLoaded": true,
+                    "pageDots": true
+                }'>
+                {% for i in range(1, 10) %}
+                    {% if product["Image " ~ i] %}
+                        <div class="carousel-cell">
+                            <a data-fancybox="gallery" href="{{ product["Image " ~ i] }}">
+                                <img src="{{ product["Image " ~ i] }}" class="w-100" alt="Product Image" />
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
 
@@ -67,6 +68,8 @@
 <!-- Fancybox JS -->
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js" defer></script>
 <!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> -->
+ <!-- Flickity JS -->
+ <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer></script>
 <script src="{{ url_for('static', filename='script.js') }}?v={{ version }}" defer></script>
 {% endblock %}

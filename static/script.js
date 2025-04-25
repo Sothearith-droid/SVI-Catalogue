@@ -26,6 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const href = link.getAttribute("href");
             const target = link.getAttribute("target");
 
+            // Skip links used by Fancybox
+            if (link.hasAttribute("data-fancybox")) {
+                console.log("Fancybox link clicked, not showing loader:", href);
+                return;
+            }
+
             if (
                 href &&
                 !href.startsWith("#") &&
@@ -39,36 +45,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Category swiper
-    new Swiper(".homeSwiper", {
-        loop: true,
-        speed: 1000,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
+    // const slideCount = document.querySelectorAll(".homeSwiper .swiper-slide").length;
+    // const loopEnabled = slideCount >= 3;
+
+    // new Swiper(".homeSwiper", {
+    //     loop: loopEnabled,
+    //     speed: 1000,
+    //     autoplay: {
+    //       delay: 3000,
+    //       disableOnInteraction: false,
+    //     },
+    //     pagination: {
+    //       el: ".home-pagination",
+    //       clickable: true,
+    //     },
+    //     navigation: {
+    //       nextEl: ".home-next",
+    //       prevEl: ".home-prev",
+    //     },
+    //     observer: true,
+    //     observeParents: true,
+    //     on: {
+    //       slideChange: function () {
+    //         console.log("Slide changed to:", this.realIndex);
+    //       }
+    //     },
+    // });      
 
     // Product swiper
-    new Swiper('.productSwiper', {
-        loop: true,
-        speed: 1000,
-        slidesPerView: 1,
-        spaceBetween: 10,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
+    // new Swiper('.productSwiper', {
+    //     loop: true,
+    //     speed: 1000,
+    //     slidesPerView: 1,
+    //     spaceBetween: 10,
+    //     pagination: {
+    //         el: '.product-pagination',
+    //     },
+    //     navigation: {
+    //         nextEl: '.product-next',
+    //         prevEl: '.product-prev',
+    //     },
+    // });
 });

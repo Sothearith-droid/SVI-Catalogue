@@ -2,33 +2,30 @@
 {% block title %}SVI - Food Packaging{% endblock %}
 
 {% block content %}
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v={{ version }}">
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
-<!-- Swiper Carousel -->
-<div class="swiper homeSwiper">
-  <div class="swiper-wrapper">
-    {% for slide in slideshow %}
-      <div class="swiper-slide">
-        <a href="{{ url_for('show_category', category_name=slide['Category Name']) }}">
-          <img src="{{ slide['Category Icon'] }}" alt="{{ slide['Category Name'] }}">
-        </a>
-      </div>
-    {% endfor %}
+<!-- Flickity Carousel -->
+<div class="carousel"
+     data-flickity='{
+        "wrapAround": true,
+        "autoPlay": 3000,
+        "prevNextButtons": true,
+        "pageDots": true,
+        "imagesLoaded": true
+     }'>
+  {% for slide in slideshow %}
+  <div class="carousel-cell">
+    <a href="{{ url_for('show_category', category_name=slide['Category Name']) }}">
+      <img src="{{ slide['Category Icon'] }}" alt="{{ slide['Category Name'] }}">
+    </a>
   </div>
-
-  <!-- Add Arrows -->
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-
-  <!-- Add Pagination -->
-  <div class="swiper-pagination"></div>
+  {% endfor %}
 </div>
 
 <!-- Category Grid -->
 <div class="container mt-5">
-  <div class="row g-2">
+  <div class="row g-3">
     {% for cat in all_categories %}
     <div class="col-6 col-sm-6 col-md-4">
       <div class="product-card h-100">
@@ -43,6 +40,9 @@
 </div>
 
 <!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script> -->
+
+<!-- Flickity JS -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer></script>
 <script src="{{ url_for('static', filename='script.js') }}?v={{ version }}" defer></script>
 {% endblock %}
