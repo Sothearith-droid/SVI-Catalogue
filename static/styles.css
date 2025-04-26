@@ -71,7 +71,7 @@ body {
 #loader {
     position: fixed;
     inset: 0;
-    background: linear-gradient(to bottom right, rgba(165, 155, 155, 0.6), rgba(165, 155, 155, 0.6));
+    background: linear-gradient(to bottom right, rgba(190, 190, 190, 0.8), rgba(190, 190, 190, 0.8));
     display: flex;
     align-items: center;
     justify-content: center;
