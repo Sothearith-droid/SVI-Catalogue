@@ -59,7 +59,7 @@ def get_category_data():
     headers = data[0]
     return [dict(zip(headers, row)) for row in data[1:]]
 
-@cache.cached()
+# @cache.cached()
 def get_slideshow_data():
     app.logger.info("Fetching slideshow data")
     slideshow_worksheet = sheet.worksheet('Slideshow')
