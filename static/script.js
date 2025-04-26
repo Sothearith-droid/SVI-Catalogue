@@ -87,3 +87,20 @@ document.addEventListener("DOMContentLoaded", () => {
     //     },
     // });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const isMobile = window.innerWidth < 768; // adjust as needed
+    const carousel = document.querySelector('.carousel');
+  
+    if (carousel) {
+      new Flickity(carousel, {
+        wrapAround: true,
+        autoPlay: 3000,
+        prevNextButtons: true,
+        pageDots: true,
+        imagesLoaded: true,
+        draggable: isMobile // only allow swipe on mobile
+      });
+    }
+});
+  

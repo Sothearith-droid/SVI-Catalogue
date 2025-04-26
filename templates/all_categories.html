@@ -16,8 +16,8 @@
      }'>
   {% for slide in slideshow %}
   <div class="carousel-cell">
-    <a href="{{ url_for('show_category', category_name=slide['Category Name']) }}">
-      <img src="{{ slide['Category Icon'] }}" alt="{{ slide['Category Name'] }}">
+    <a href="{{ url_for('show_category', category_name=slide['Slide Category Name']) }}">
+      <img src="{{ slide['Slide Category Icon'] }}" alt="{{ slide['Slide Category Name'] }}">
     </a>
   </div>
   {% endfor %}
