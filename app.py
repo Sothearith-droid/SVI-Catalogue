@@ -51,7 +51,7 @@ def convert_link(link):
             return link
     return link
 
-@cache.cached(timeout=300)  # cache for 5 minutes
+@cache.cached()
 def get_category_data():
     app.logger.info("Fetching category data")
     category_worksheet = sheet.worksheet('Category')
@@ -59,7 +59,7 @@ def get_category_data():
     headers = data[0]
     return [dict(zip(headers, row)) for row in data[1:]]
 
-@cache.cached(timeout=300)  # cache for 5 minutes
+@cache.cached()
 def get_slideshow_data():
     app.logger.info("Fetching slideshow data")
     slideshow_worksheet = sheet.worksheet('Slideshow')
