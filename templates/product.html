@@ -51,7 +51,11 @@
                 <h1 class="product-name">{{ product["Product Name"] }}</h1>
 
                 <!-- Product Description -->
-                <p class="description" style="white-space: pre-wrap;">{{ product["Description"] | replace('\n- ', '\n• ') }}</p>
+                <p class="description" style="white-space: pre-wrap;">
+                    {{ product["Description"]
+                        | replace('\n- ', '\n• ')
+                        | replace('- ', '• ') }}
+                  </p>                  
 
                 <!-- Price -->
                 <div class="price">
