@@ -43,17 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Flickity carousel setup
-    const isMobile = window.innerWidth < 768;
-    const carousel = document.querySelector('.carousel');
+//     const isMobile = window.innerWidth < 768;
+//     const carousel = document.querySelector('.carousel');
 
-    if (carousel) {
-        new Flickity(carousel, {
-            wrapAround: true,
-            autoPlay: 3000,
-            prevNextButtons: false,
-            pageDots: true,
-            imagesLoaded: true,
-            draggable: isMobile
-        });
-    }
+//     if (carousel) {
+//         new Flickity(carousel, {
+//             wrapAround: true,
+//             autoPlay: 3000,
+//             prevNextButtons: false,
+//             pageDots: true,
+//             imagesLoaded: true,
+//             draggable: isMobile
+//         });
+//     }
 });

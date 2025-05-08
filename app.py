@@ -9,6 +9,7 @@ from flask import send_from_directory
 from datetime import timedelta
 import logging
 import time
+import re
 
 load_dotenv()
 
@@ -50,6 +51,10 @@ def convert_link(link):
             app.logger.warning("Failed to convert Google Drive link: %s", link)
             return link
     return link
+
+def normalize_description(text):
+    # Replace any dash-like character (with optional zero-width space) followed by space
+    return re.sub(r'[\u200b\u2013\u2014\u2212\u2022-]\s*', '• ', text)
 
 @cache.cached()
 def get_category_data():
@@ -126,6 +131,7 @@ def show_product(category_name, product_id):
             app.logger.warning("Product ID not found: %s", product_id)
             return render_template("404.html"), 500
         else:
+            product["Description"] = normalize_description(product["Description"])
             for i in range(1, 7):
                 key = f"Image {i}"
                 if key in product:
