@@ -53,8 +53,10 @@ def convert_link(link):
     return link
 
 def normalize_description(text):
-    # Replace any dash-like character (with optional zero-width space) followed by space
-    return re.sub(r'[\u200b\u2013\u2014\u2212\u2022-]\s*', '• ', text)
+    # Remove any bullet/dash-like character at the start of a line
+    cleaned = re.sub(r'^[\u200b\u2013\u2014\u2212\u2022•\-]+\s*', '', text, flags=re.MULTILINE)
+    # Then prefix each line with a bullet
+    return re.sub(r'^', '• ', cleaned, flags=re.MULTILINE)
 
 @cache.cached()
 def get_category_data():
