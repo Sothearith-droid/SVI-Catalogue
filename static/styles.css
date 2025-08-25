@@ -115,21 +115,25 @@ body {
     height: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* even shadow all around */
 }
+.product-card:hover {
+    background-color: rgb(207, 207, 207); 
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); /* stronger shadow */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
 .product-card a {
-    display: inline-block;
+    display: block; /* make the <a> fill the card */
     color: black;
     text-decoration: none;
     border-radius: 5px;
 }
-.product-card a:hover {
-    background-color: rgb(240, 240, 240);
-    color: black;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); /* even shadow all around */
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
+
 .product-card img {
+    aspect-ratio: 1 / 1;   /* modern browsers */
+    width: 100%;
+    object-fit: cover;        /* crops image to fit box */
     border-radius: 5px;
-    object-fit: fill;
 }
 
 .responsive-title {
@@ -239,6 +243,13 @@ body {
     font-weight: bold;
     font-size: 20px;
     color: #007bff;
+}
+
+.tc {
+    color: red; 
+    font-style: 
+    italic; 
+    margin-top: 0.5rem;
 }
 
 /* ######################################## */
